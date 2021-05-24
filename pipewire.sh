@@ -66,6 +66,12 @@ output() {
     if [ "${IS_MUTED}" != "" ]; then
         echo "${MUTED_COLOR}${MUTED_ICON} ${DEFAULT_SINK}"
     else
+        if [ "${VOLUME}" -le '40' ]; then
+            printf '%s ' "${VOLUME_ICONS[0]}"
+        elif [ "${VOLUME}" -gt '40' ]; then
+            printf '%s ' "${VOLUME_ICONS[1]}"
+        fi
+
         echo "${VOLUME}% ${DEFAULT_SINK}"
     fi
 
